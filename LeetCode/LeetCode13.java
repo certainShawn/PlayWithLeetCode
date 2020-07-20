@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Roman {
+public class LeetCode13 {
     static int finalNumber=0;
     public int romanToInt(String s)
     {
@@ -16,7 +16,18 @@ public class Roman {
         for(int i=0;i<s.length();i++)
         {
             Character memo=s.charAt(i);
-            finalNumber=finalNumber+ForRoman.get(memo);
+            Character memoPlus=s.charAt(i+1);
+            int compareDigit1=ForRoman.get(memo);
+            int CompareDigit2=ForRoman.get(memoPlus);
+            if(compareDigit1<=CompareDigit2)
+            {
+                int memopluz=compareDigit1*CompareDigit2;
+                finalNumber=finalNumber+memopluz;
+            }
+            else
+            {
+                finalNumber=finalNumber+ForRoman.get(memo);
+            }
         }
         return finalNumber;
         
