@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LeetCode13 {
-    static int finalNumber=0;
+    static int FinalNumber=0;
     public int romanToInt(String s)
     {
         Map<Character,Integer> ForRoman = new HashMap<Character,Integer>(); 
@@ -18,20 +18,29 @@ public class LeetCode13 {
         for(int i=0;i<s.length();i++)
         {
             Character memo=s.charAt(i);
-            Character memoPlus=s.charAt(i+1);
-            int compareDigit1=ForRoman.get(memo);
-            int CompareDigit2=ForRoman.get(memoPlus);
-            if(compareDigit1<=CompareDigit2)
+            if(i<s.length()-1)
             {
-                int memopluz=compareDigit1*CompareDigit2;
-                finalNumber=finalNumber+memopluz;
-            }
-            else
+                Character memoPlus=s.charAt(i+1);
+                int compareDigit1=ForRoman.get(memo);
+                int CompareDigit2=ForRoman.get(memoPlus);
+            
+                if(compareDigit1<=CompareDigit2)
+                {
+                    int memopluz=compareDigit1*CompareDigit2;
+                    FinalNumber=FinalNumber+memopluz;
+                }
+                else
+                {
+                    FinalNumber=FinalNumber+ForRoman.get(memo);
+                }
+            }    
+            if(i==s.length())
             {
-                finalNumber=finalNumber+ForRoman.get(memo);
-            }
+                int lastDigit=ForRoman.get(memo); 
+                FinalNumber=FinalNumber+lastDigit;
+                break;
+            }    
         }
-        return finalNumber;
-        
+        return FinalNumber;     
     }
 }
